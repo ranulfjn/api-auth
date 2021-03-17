@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const Players = require('../models/Players')
 
 // const getUser =async (req,res)=>{
@@ -13,15 +15,21 @@ const Players = require('../models/Players')
 // }
 
 const registerPlayer = async (req,res)=>{
+
+
+    const salt = await bcrypt.genSalt(10)
+    const hashPassword= await bcrypt.hash(req.body.password,salt);
+    
     const register = new Players({
         name:req.body.name,
         email:req.body.email,
-        password:req.body.password
+        password:hashPassword
     })
 
 
     try{
-       const player= await register.save;
+
+       const player= await register.save();
        res.send(player);
 
     }catch(err){
