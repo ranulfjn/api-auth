@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router();
+const  express = require ("express");
+const router= express.Router();
+const {registerPlayer} = require('../controllers/players')
 
 
-router.get('/',(req,res)=>{
-    console.log('players')
-    res.send('Players')
-});
+//router.get('/players',getUser);
+
+router.post('/register' , registerPlayer)
 
 
 
