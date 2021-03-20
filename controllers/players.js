@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const Joi = require('joi');
+const schema = require('../validation')
 
 const Players = require('../models/Players')
 
@@ -17,24 +19,26 @@ const Players = require('../models/Players')
 const registerPlayer = async (req,res)=>{
 
 
-    const salt = await bcrypt.genSalt(10)
-    const hashPassword= await bcrypt.hash(req.body.password,salt);
+    const {error} = Joi.validate(req.body, schema)
+
+    // const salt = await bcrypt.genSalt(10)
+    // const hashPassword= await bcrypt.hash(req.body.password,salt);
     
-    const register = new Players({
-        name:req.body.name,
-        email:req.body.email,
-        password:hashPassword
-    })
+    // const register = new Players({
+    //     name:req.body.name,
+    //     email:req.body.email,
+    //     password:hashPassword
+    // })
 
 
-    try{
+    // try{
 
-       const player= await register.save();
-       res.send(player);
+    //    const player= await register.save();
+    //    res.send(player);
 
-    }catch(err){
-        res.status(200).send();
-    }
+    // }catch(err){
+    //     res.status(200).send();
+    // }
 }
 
 module.exports= {registerPlayer

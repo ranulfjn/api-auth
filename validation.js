@@ -1,4 +1,3 @@
-
 const joi = require('joi');
 
 
@@ -10,8 +9,11 @@ const schema =  {
     email:  joi.string().
             joi.min(6).
             joi.required(),
-    password: joi.string().
-              joi.max(6).
-              joi.required(),
+    password:   joi.string().
+                joi.max(6).
+                joi.required(),
 
 }
+
+
+module.exports= schema;
