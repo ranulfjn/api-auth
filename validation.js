@@ -1,19 +1,20 @@
-const joi = require('joi');
+const Joi = require('joi');
 
 
-const schema =  {
+const schema = Joi.object ({
 
-    name:   joi.string().
-            joi.max(255).
-            joi.required(),
-    email:  joi.string().
-            joi.min(6).
-            joi.required(),
-    password:   joi.string().
-                joi.max(6).
-                joi.required(),
+    name:   Joi.string()
+            .max(255)
+            .required(),
+    email:  Joi.string()
+            .min(6)
+            .required()
+            .email(),
+    password:   Joi.string()
+                .min(6)
+                .required(),
 
-}
+})
 
 
 module.exports= schema;
